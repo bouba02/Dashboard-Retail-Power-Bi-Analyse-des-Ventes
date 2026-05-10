@@ -1,98 +1,127 @@
-# Dashboard Retail : Analyse des Ventes
-## Secteur : Retail & Distribution | Outil : Power BI
+# Retail Dashboard — Sales, Profit & Segment Analysis | Power BI
 
+> **$2.14M revenue · $270K profit · Consumer = 50%+ of sales · Technology = best margin**  
+> Superstore Dataset · Power Query ETL · DAX · Actionable business recommendations
 
-![ DASHBOARD RETAIL- ](DASHBOARD.png)
+![Retail Dashboard](DASHBOARD.png)
 
-
-
-## 📌 Énoncé du problème
-
-L’objectif de ce projet est d’analyser les performances commerciales d’une entreprise fictive à travers un **tableau de bord Power BI interactif**, afin d’identifier les leviers de croissance et les axes d’amélioration.
-
-L’entreprise cherche à répondre à plusieurs questions clés :
-- Quelles sont les **tendances de ventes et de profits** dans le temps ?  
-- Quels sont les **segments de clients les plus rentables** ?  
-- Quelles **régions et catégories** contribuent le plus au chiffre d’affaires ?  
-- Comment optimiser les **coût de la logistique** et les **performances produits** ?  
-
-Le but est de fournir une **vision claire et exploitable** des données, facilitant la prise de décision.
+🇫🇷 [Version française disponible ici](README_FR.md)
 
 ---
 
-## 🔍 Découverte des données
+## Business Problem
 
-Le dataset Superstore contient des informations sur :
-- Les **ventes**, **profits** et **quantités**,
-- Les **catégories** et **sous-catégories** de produits,
-- Les **types de clients** et **segments de marché**,
-- Les **régions géographiques**, **types de livraison**, et **dates de commande**.
+A retail company needed to understand its growth levers and improvement areas
+from historical sales data.
 
-**Source :** Sample Superstore Dataset (fourni sur le site Kaggle).
+**4 questions from management:**
 
----
-
-## ⚙️ Étapes du projet
-
-### 1 Nettoyage et transformation des données (ETL)
-Réalisé dans **Power Query**, ce processus a permis de rendre les données prêtes pour la modélisation :
-- Vérification des doublons, des valeurs manquantes et des incohérences.  
-- Transformation des champs de dates.  
-- Correction des types de données (dates, nombres, textes).
-  
-
-### 2 Création des mesures DAX
-- **Chiffre d’affaires total** = SUM(Sales)
-- **Profit total** = SUM(Profit)
-- **Nombre de commandes** = DISTINCTCOUNT(Order ID)
-- **Nombre de clients** = DISTINCTCOUNT(Customer ID)
-
-### 4️⃣ Visualisation et storytelling
-- Carte des ventes par région 🗺️  
-- Graphique des ventes & profits par année 📈  
-- Répartition des ventes par type de client 🧑‍💼  
-- Top 5 des produits les plus vendus 🏆  
-- Analyse du chiffre d’affaires par catégorie et par segment 🧩
+| Question | Axis |
+|---|---|
+| What are the sales & profit trends over time? | Time |
+| Which customer segments are most profitable? | Customer |
+| Which regions and categories contribute most to revenue? | Geographic |
+| How to optimize shipping costs and product performance? | Operational |
 
 ---
 
-## 📊 Insights clés
-- Le chiffre d’affaires total atteint **2,14 M$** pour un profit de **270,63 K$**.  
-- Les **clients consommateurs (Consumer)** représentent plus de **50 % des ventes**.  
-- Les **régions Est et Ouest** concentrent la majorité du chiffre d’affaires.  
-- Les produits de la catégorie **Technology** affichent la meilleure marge bénéficiaire.  
-- Certaines années présentent un **écart croissant entre les ventes et les profits**, suggérant des coûts ou remises à surveiller.
+## Key Insights Extracted
+
+| Insight | Detail |
+|---|---|
+| Total Revenue | **$2.14M** |
+| Total Profit | **$270.63K** — 12.6% overall margin |
+| Dominant segment | **Consumer** — over 50% of sales |
+| Leading regions | **East & West** — majority of revenue concentrated |
+| Best category | **Technology** — highest profit margin |
+| Warning signal | Growing gap between sales and profits over years → costs or discounts to monitor |
 
 ---
 
-## 💡 Recommandations
-- Surveiller la **rentabilité par produit** et ajuster la politique de prix.  
-- Mettre en place un **suivi mensuel des marges** pour anticiper les baisses de rentabilité.  
-- Concentrer les efforts marketing sur les **segments les plus rentables**.  
-- Optimiser la logistique dans les régions à **faible marge**.  
----
+## Recommendations Delivered
 
-## 🧠 Outils, logiciels et langages utilisés
-- **Microsoft Power BI** → création du tableau de bord interactif  
-- **Power Query** → nettoyage et transformation des données  
-- **DAX** → calcul des indicateurs clés  
-- **Excel / CSV** → source de données
+- **Product profitability:** Monitor margins by SKU and adjust pricing on loss-making products
+- **Monthly tracking:** Implement monthly margin reporting to anticipate drops before they become critical
+- **Marketing focus:** Concentrate investment on Consumer and Technology segments — best demonstrated ROI
+- **Logistics optimization:** Review shipping modes in low-margin regions — shipping cost not offset by selling price
 
 ---
 
-## 📷 Résultat final
+## Dashboard — Components
 
-Le tableau de bord permet de :
-- Suivre en temps réel les ventes et profits par période, région et segment,  
-- Identifier les produits à forte marge et les zones à optimiser,  
-- Fournir une base décisionnelle fiable et visuelle pour les managers.
+![Dashboard](DASHBOARD.png)
+
+| Visualization | Content |
+|---|---|
+| Geographic map | Sales by region |
+| Time chart | Sales & profit by year — flags the growing gap |
+| Segment breakdown | Consumer · Corporate · Home Office |
+| Top 5 products | Ranked by sales volume |
+| Revenue analysis | By category (Technology · Furniture · Office Supplies) and segment |
 
 ---
 
-## 🧾 Auteur
-👤 **Nikiema Boubacar**  
-Data Analyst
-Diplomé en Master Big Data & Cloud Computing 
-🌐 [LinkedIn]https://www.linkedin.com/in/boubacar-nikiema/
-Youtube: https://www.youtube.com/@BoubacarDataAnalyst
+## DAX Measures
 
+```dax
+Total_Revenue   = SUM(Sales[Sales])
+Total_Profit    = SUM(Sales[Profit])
+Nb_Orders       = DISTINCTCOUNT(Sales[Order ID])
+Nb_Customers    = DISTINCTCOUNT(Sales[Customer ID])
+Profit_Margin_% = DIVIDE([Total_Profit], [Total_Revenue], 0)
+```
+
+---
+
+## ETL Pipeline — Power Query
+
+- Duplicate and missing value checks
+- Date field transformation
+- Data type correction (dates · numbers · text)
+- Geographic field normalization
+
+---
+
+## Dataset
+
+**Source:** Sample Superstore Dataset — [Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)  
+**Format:** CSV · Fictional data for analytical purposes  
+**Content:** Sales · Profits · Quantities · Categories · Customer segments · Regions · Shipping modes
+
+---
+
+## Tech Stack
+
+- **Power BI Desktop** — interactive dashboard
+- **Power Query / M** — ETL and cleaning
+- **DAX** — 5 calculated measures
+- **CSV** — data source
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/bouba02/Dashboard-Retail-Analyse-Ventes.git
+```
+
+Open the `.pbix` file in Power BI Desktop.
+
+---
+
+## Author
+
+**Boubacar Nikiema** — Data Analyst & BI Consultant
+
+Specialized in retail & distribution dashboards, commercial analytics and performance
+management using Power BI, SQL, Python and Excel. Based in Morocco, working with
+clients across Africa and French-speaking Europe.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-boubacar--nikiema-blue?logo=linkedin)](https://linkedin.com/in/boubacar-nikiema)
+[![YouTube](https://img.shields.io/badge/YouTube-BoubacarDataAnalyst-red?logo=youtube)](https://youtube.com/@BoubacarDataAnalyst)
+[![Email](https://img.shields.io/badge/Email-nikiemaboubacar%40gmail.com-gray?logo=gmail)](mailto:nikiemaboubacar@gmail.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-data.ngroupmediadigital.com-green)](https://data.ngroupmediadigital.com)
+
+---
+
+*Fictional data — Sample Superstore Dataset (Kaggle) · Code: MIT License*
